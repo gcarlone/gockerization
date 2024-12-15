@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: go-app-ingress
+  namespace: default  # Specifica il namespace del tuo servizio (default o altro)
+  annotations:
+    traefik.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: traefik  # Specifica l'Ingress Class traefik
+  rules:
+  - host: localhost  # Questo è l'host (dominio) che deve essere mappato
+    http:
+      paths:
+      - path: /  # Il percorso che instrada verso il servizio
+        pathType: Prefix
+        backend:
+          service:
+            name: go-app-service  # Nome del servizio a cui inoltrare le richieste
+            port:
+              number: 8080  # La porta del servizio (modifica in base alla tua configurazione)
+
