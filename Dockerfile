@@ -2,7 +2,7 @@
 FROM golang:alpine as builder
 
 # COPY go.mod, go.sum and download the dependencies
-COPY ZscalerRootCA.crt /usr/local/share/ca-certificates/ZscalerRootCA.crt
+COPY RootCA.crt /usr/local/share/ca-certificates/RootCA.crt
 RUN update-ca-certificates
 
 # Install git.
